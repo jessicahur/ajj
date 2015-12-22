@@ -76,7 +76,14 @@ function initMap() {
 
   function result() {
     console.log('submittng map instructions');
-    calculateAndDisplayRoute(directionsService, directionsDisplay, map);
+    calculateAndDisplayRoute(directionsService, directionsDisplay, map);//Need to grab info from localStorage
+    var localBody = localStorage.getItem('localBody');
+    var $body = $('body');
+    if(localBody){
+      $body.html('');
+      $body.html(localBody);
+      calculateAndDisplayRoute(directionsService, directionsDisplay, map);
+    }
     $('.carSelection').hide();
     $('#userInput').hide();
     $('#pageResults').show();

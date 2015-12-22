@@ -40,9 +40,8 @@ $.when($gasDefer, $distanceDefer , $vehicleDefer).done(function(){
       costChartTrigger();//Prints chart using nv.d3
       mpgChartTrigger();//Prints chart using nv.d3
       setUserObjToLocalStorage(user);
-      var localBody = $('body').not('#costChart').not('#mpgChart');
-
-
+      var localBody = $('body').html();
+      localStorage.setItem('localBody',localBody);
     });
   });
 
