@@ -77,6 +77,7 @@ function initMap() {
   function result() {
     console.log('submittng map instructions');
     calculateAndDisplayRoute(directionsService, directionsDisplay, map);
+    $('.carSelection').hide();
     $('#userInput').hide();
     $('#pageResults').show();
     google.maps.event.trigger(map, 'resize');
