@@ -66,9 +66,12 @@ function initMap (){
   var centerControl = new CenterControl(centerControlDiv, map);
   centerControlDiv.index = 1;
   map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
-  //Event listener for submit 'button'
-  $('#submit').on('click', function(e){
+
+
+  page('results', result);
+  function result() {
     console.log('submittng map instructions');
+
     e.preventDefault();
 
     calculateAndDisplayRoute(directionsService, directionsDisplay,map);
@@ -83,6 +86,7 @@ function initMap (){
   //   $('#pageResults').hide();
   // });//end of back button listener
 }//end of initmap
+
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay){
   console.log(waypts);
