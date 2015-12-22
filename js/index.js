@@ -30,7 +30,7 @@
 
 
 $.when($gasDefer, $distanceDefer , $vehicleDefer).done(function(){
-  buildUserObject();
+  var user = buildUserObject();
   $printDataDefer.resolve();
 
 
@@ -39,25 +39,17 @@ $.when($gasDefer, $distanceDefer , $vehicleDefer).done(function(){
       printCostDistAndGas(); //Show miles traveled, total trip cost, and gallons of gas used in the DOM
       costChartTrigger();//Prints chart using nv.d3
       mpgChartTrigger();//Prints chart using nv.d3
-      setUserObjToLocalStorage();
+      setUserObjToLocalStorage(user);
 
     });
   });
 
 
 //Stores whole user object in local storage one key at a time.
-function setUserObjToLocalStorage (){
-  localStorage.setItem('avgMpg', user.avgMpg);
-  localStorage.setItem('maxMpg', user.maxMpg);
-  localStorage.setItem('minMpg', user.minMpg);
-  localStorage.setItem('gasQuantityAvg', user.gasQuantityAvg);
-  localStorage.setItem('gasQuantityMax', user.gasQuantityMax);
-  localStorage.setItem('gasQuantityMin', user.gasQuantityMin);
-  localStorage.setItem('costReg', user.costReg);
-  localStorage.setItem('costMid', user.costMid);
-  localStorage.setItem('costPrem', user.costPrem);
-  localStorage.setItem('distance', user.distance);
-  localStorage.setItem('vehicleID', user.vehicleID);
+function setUserObjToLocalStorage (user){
+  var user = JSON.stringify(user);
+  console.log(user);
+  localStorage.setItem('user',user);
 }
 
 function printCostDistAndGas (){
@@ -79,6 +71,7 @@ function buildUserObject (){
   user.costMid     =  ((user.gasQuantityAvg) * (gas.midgrade));
   user.costPrem    =  ((user.gasQuantityAvg) * (gas.premium));
   console.log(user);
+  return user;
 }
 
 
